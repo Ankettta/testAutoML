@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Platform</title>
+    <!-- Подключение шрифта Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Подключение иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        <!-- Хедер -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">
+                <span class="header__logo-text">AutoGenNet</span>
+            </a>
+
+            <!-- Десктопная навигация + Языковой селектор -->
+            <div class="header__desktop-actions">
+                <!-- Десктопная навигация -->
+                <nav class="header__nav header__nav--desktop">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item"><a href="#problems" class="header__nav-link">Проблемы</a></li>
+                        <li class="header__nav-item"><a href="#solution" class="header__nav-link">Решение</a></li>
+                        <li class="header__nav-item"><a href="#modules" class="header__nav-link">Модули</a></li>
+                        <li class="header__nav-item"><a href="#advantages" class="header__nav-link">Преимущества</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Языковой селектор (десктоп) -->
+                <div class="language-selector">
+                    <button class="language-selector__trigger" aria-label="Выбрать язык">
+                        <span class="language-selector__current">RU</span>
+                        <i class="fa-solid fa-chevron-down language-selector__icon"></i>
+                    </button>
+                    <ul class="language-selector__dropdown">
+                        <li class="language-selector__item">
+                            <a href="#" class="language-selector__link" data-lang="ru">
+                                <span class="language-selector__code">RU</span>
+                                <span class="language-selector__name">Русский</span>
+                            </a>
+                        </li>
+                        <li class="language-selector__item">
+                            <a href="#" class="language-selector__link" data-lang="en">
+                                <span class="language-selector__code">EN</span>
+                                <span class="language-selector__name">English</span>
+                            </a>
+                        </li>
+                        <li class="language-selector__item">
+                            <a href="#" class="language-selector__link" data-lang="zh">
+                                <span class="language-selector__code">ZH</span>
+                                <span class="language-selector__name">中文</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Мобильное меню (бургер) -->
+            <button class="header__burger" aria-label="Открыть меню">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Мобильная навигация (скрытая по умолчанию) -->
+        <nav class="header__nav header__nav--mobile">
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#problems" class="header__nav-link">Проблемы</a></li>
+                <li class="header__nav-item"><a href="#solution" class="header__nav-link">Решение</a></li>
+                <li class="header__nav-item"><a href="#modules" class="header__nav-link">Модули</a></li>
+                <li class="header__nav-item"><a href="#advantages" class="header__nav-link">Преимущества</a></li>
+                <li class="header__nav-item"><a href="#roadmap" class="header__nav-link">Дорожная карта</a></li>
+                <li class="header__nav-item"><a href="#contacts" class="header__nav-link">Контакты</a></li>
+                <!-- Языковой селектор (мобильный) -->
+                <li class="header__nav-item header__nav-item--language">
+                    <div class="language-selector language-selector--mobile">
+                        <button class="language-selector__trigger" aria-label="Выбрать язык">
+                            <span class="language-selector__current">RU</span>
+                            <i class="fa-solid fa-chevron-down language-selector__icon"></i>
+                        </button>
+                        <ul class="language-selector__dropdown">
+                            <li class="language-selector__item">
+                                <a href="#" class="language-selector__link" data-lang="ru">
+                                    <span class="language-selector__code">RU</span>
+                                    <span class="language-selector__name">Русский</span>
+                                </a>
+                            </li>
+                            <li class="language-selector__item">
+                                <a href="#" class="language-selector__link" data-lang="en">
+                                    <span class="language-selector__code">EN</span>
+                                    <span class="language-selector__name">English</span>
+                                </a>
+                            </li>
+                            <li class="language-selector__item">
+                                <a href="#" class="language-selector__link" data-lang="zh">
+                                    <span class="language-selector__code">ZH</span>
+                                    <span class="language-selector__name">中文</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+         <!-- Блок баннер с анимацией  -->
+        <section class="banner">
+            <!-- Canvas для анимации точек -->
+            <canvas id="demo-canvas"></canvas>
+            <div class="container banner__container">
+                <div class="banner__content">
+                    <h1 class="banner__title">Платформа AutoGenNet</h1>
+                    <p class="banner__subtitle">AutoGenNet — платформа AutoML для
+                         разработки моделей компьютерного зрения </p>
+                     <div class="banner__partners">
+                        <a href="https://spcras.ru/" target="_blank" class="partner">
+                        <img src="assets/img/icon_fic_ran.png" alt="СПб ФИЦ РАН" data-i18n="partner_spbfic_alt">
+                        <span data-i18n="partner_spbfic_text">СПб ФИЦ РАН</span> 
+                        </a>
+
+                        <a href="https://litsam.ru/index.php/ru/homepage-ru" target="_blank" class="partner">
+                        <img src="assets/img/icon_litsam.png" alt="ЛИТСАМ" data-i18n="partner_litsam_alt">
+                        <span data-i18n="partner_litsam_text">ЛИТСАМ</span> 
+                        </a>
+                    </div>
+                    <div class="banner__buttons">
+                        <a href="#solution" class="button button--primary">Узнать больше</a>
+                    </div>
+                </div>
+                <div class="banner__visual">
+                        <img src="assets/img/banner_v_img.png" alt="AI Platform Visual" class="banner__img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Проблем -->
+        <section class="problems" id="problems">
+            <div class="container">
+                <h2 class="section-title problems__title">Существующие проблемы</h2>
+                <div class="problems__grid">
+                    <div class="problem-card">
+                        <div class="problem-card__icon">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3 class="problem-card__title">Бессистемность архитектур</h3>
+                        <p class="problem-card__text">Существует множество архитектур глубокого обучения, список которых плохо систематизирован. Платформы для агрегации информации только набирают популярность.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-card__icon">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <h3 class="problem-card__title">Отсутствие универсального подхода</h3>
+                        <p class="problem-card__text">Нет единого метода генерации и обучения моделей — разные алгоритмы подходит для конкретных задач, требуя индивидуальной доработки.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-card__icon">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
+                        <h3 class="problem-card__title">Прототипы с трудом адаптируются</h3>
+                        <p class="problem-card__text">Существующие решения часто реализованы как прототипы, которые требуют глубокой модификации под задачу и понимания архитектуры ML-специалистом.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Решения -->
+        <section class="solution" id="solution">
+        <!-- Фоновая сетка + декоративные элементы -->
+        <div class="solution__background">
+            <canvas class="solution__animation-canvas"></canvas>
+            <!-- Сеточный паттерн (через CSS) -->
+            <div class="solution__grid-pattern"></div>
+            <!-- Декоративные круги для глубины, светло-белые их почти не видно -->
+            <div class="solution__decor-circle solution__decor-circle--1"></div>
+            <div class="solution__decor-circle solution__decor-circle--2"></div>
+            <div class="solution__decor-circle solution__decor-circle--3"></div>
+        </div>
+
+        <div class="container solution__container">
+            <h2 class="section-title solution__title">Предлагаемый подход</h2>
+            <p class="solution__description">AutoGenNet решает вышеописанные проблемы
+                через комплексный подход AutoML, который охватывает все этапы
+                создания моделей компьютерного зрения:</p>
+            
+            <div class="solution__approaches">
+                <!-- Карточка 1: Папка "Данные" -->
+                <div class="solution__approach-card animate-fade-in" style="animation-delay: 0.1s">
+                    <div class="solution__approach-icon">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <div class="solution__approach-content">
+                        <h3 class="solution__approach-title">Подготовка и аугментация данных</h3>
+                        <p class="solution__approach-text">Автоматическая обработка, очистка и расширение датасетов для повышения качества моделей</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2: Папка "Модели" -->
+                <div class="solution__approach-card animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="solution__approach-icon">
+                      <i class="fa-solid fa-circle-nodes"></i>
+                    </div>
+                    <div class="solution__approach-content">
+                        <h3 class="solution__approach-title">Синтез и оптимизация моделей</h3>
+                        <p class="solution__approach-text">Автоматический выбор архитектуры и тонкая настройка гиперпараметров без ручного вмешательства</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 3: Папка "Обучение" -->
+                <div class="solution__approach-card animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="solution__approach-icon">
+                        <i class="fa-solid fa-code-branch" style="color: #2563eb;"></i>
+                    </div>
+                    <div class="solution__approach-content">
+                        <h3 class="solution__approach-title">Мета-обучение</h3>
+                        <p class="solution__approach-text">Использование знаний из предыдущих проектов для ускорения обучения новых моделей</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 4: Папка "Интерфейс" -->
+                <div class="solution__approach-card animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="solution__approach-icon">
+                       <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div class="solution__approach-content">
+                        <h3 class="solution__approach-title">Пользовательские интерфейсы</h3>
+                        <p class="solution__approach-text">Интуитивно понятные UI для синтеза и управления моделями без глубоких технических знаний</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 5: Папка "Интеграция" -->
+                <div class="solution__approach-card animate-fade-in" style="animation-delay: 0.5s">
+                    <div class="solution__approach-icon">
+                       <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <div class="solution__approach-content">
+                        <h3 class="solution__approach-title">Интеграция в ПО</h3>
+                        <p class="solution__approach-text">Готовые API и скрипты для быстрой внедрения моделей в существующие системы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Существующие решения AutoML" -->
+    <section class="existing-solutions" id="existing-solutions">
+        <div class="container existing-solutions__container">
+            <h2 class="section-title existing-solutions__title">Существующие решения на основе AutoML</h2>
+
+            <!-- Контейнер аккордеонов -->
+            <div class="accordion-container">
+                <!-- Аккордеон 1: Открытые библиотеки -->
+                <div class="accordion">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        <div class="accordion__trigger-left">
+                            <i class="fa-solid fa-code-branch accordion__icon"></i>
+                            <h3 class="accordion__title">Открытые программные библиотеки</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down accordion__arrow"></i>
+                    </button>
+                    <div class="accordion__content">
+                        <p class="accordion__text">
+                            Автоматизируют создание программ, но <strong class="text-accent">требуют участия экспертов в области машинного обучения</strong> для использования. Примеры: AutoKeras, auto-sklearn.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Аккордеон 2: Облачные решения -->
+                <div class="accordion">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        <div class="accordion__trigger-left">
+                            <i class="fa-solid fa-cloud accordion__icon"></i>
+                            <h3 class="accordion__title">Облачные решения</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down accordion__arrow"></i>
+                    </button>
+                    <div class="accordion__content">
+                        <p class="accordion__text">
+                            Автоматизируют создание программ, но являются <strong class="text-accent">проприетарными решениями</strong> и <strong class="text-accent">требуют участия экспертов в области машинного обучения</strong> для использования. Пример: Google Cloud AutoML.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Аккордеон 3: Расширения ПО -->
+                <div class="accordion">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        <div class="accordion__trigger-left">
+                            <i class="fa-solid fa-puzzle-piece accordion__icon"></i>
+                            <h3 class="accordion__title">Расширения пакетов прикладного программного обеспечения</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down accordion__arrow"></i>
+                    </button>
+                    <div class="accordion__content">
+                        <p class="accordion__text">
+                            Автоматизируют весь цикл проектирования моделей, но имеют <strong class="text-accent">ограничения при интеграции созданных моделей в стороннее ПО</strong>, являются <strong class="text-accent">проприетарными решениями</strong> и требуют экспертов в этих пакетах для использования. Пример: Matlab.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Аккордеон 4: Разработки научных групп -->
+                <div class="accordion">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        <div class="accordion__trigger-left">
+                            <i class="fa-solid fa-flask-vial accordion__icon"></i>
+                            <h3 class="accordion__title">Разработки отдельных научных групп</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down accordion__arrow"></i>
+                    </button>
+                    <div class="accordion__content">
+                        <p class="accordion__text">
+                            Автоматизируют проектирование отдельных архитектур глубокого обучения или решают конкретные задачи AutoML, но <strong class="text-accent">не используют комплексный подход</strong> к решению проблем. Примеры: ГосНИИАС, ИТМО.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Секция Модули  -->
+        <section class="modules" id="modules">
+            <div class="container modules__container">
+                <h2 class="section-title modules__title">Ключевые модули AutoGenNet</h2>
+
+                <!-- Модуль 1  -->
+                <div class="module module--gray">
+                    <div class="module__content">
+                        <h3 class="module__title">Модуль автоматической разметки изображений</h3>
+                        <p class="module__text">
+                            Автоматическая разметка ускоряет подготовку
+                            больших и качественных датасетов для обучения нейросетей.
+                            Она снижает затраты на ручную разметку, повышает точность
+                            благодаря единообразию тегов и позволяет быстро масштабировать
+                            проекты и запускать новые модели.</p>
+
+                    </div>
+                    <div class="module__visual">
+                        <img src="assets/img/md_img1.png" alt="Интерфейс автоматической разметки изображений" class="module__img">
+                        <!-- Полупрозрачная метка -->
+                        <div class="module__label">interface</div>
+                    </div>
+                </div>
+
+                <!-- Модуль 2 -->
+                <div class="module module--white">
+                    <div class="module__visual">
+                        <img src="assets/img/md_img2.png" alt="Интерфейс автоматической аугментации данных" class="module__img">
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                     <div class="module__content">
+                        <h3 class="module__title">Модуль автоматического аугментирования данных</h3>
+                        <p class="module__text">
+                            Автоматическая аугментация создает новые варианты
+                            изображений — повороты, масштабирование, изменения освещения. Это
+                            увеличивает объем и разнообразие датасета без дополнительных затрат на
+                            сбор данных. Модуль снижает переобучение и помогает моделям лучше работать
+                            на реальных, непредсказуемых данных.</p>
+                    </div>
+                </div>
+
+                <!-- Модуль 3 (фон: светло-серый) -->
+                <div class="module module--gray">
+                    <div class="module__content">
+                        <h3 class="module__title">Модуль автоматической генерации моделей детекции объектов</h3>
+                        <p class="module__text">
+                            Модуль автоматически управляет всем циклом обучения детекторов:
+                            выбором архитектуры, настройкой гиперпараметров и оценкой качества. Это резко сокращает
+                            время разработки и исключает ошибки ручной настройки. Итог — точные и готовые к
+                            внедрению модели для транспорта, безопасности, логистики и других отраслей.</p>
+                    </div>
+                    <div class="module__visual">
+                        <!-- <img src="assets/img/md_img3.png" alt="Интерфейс генерации моделей детектирования" class="module__img"> -->
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                </div>
+
+                <!-- Модуль 4 (фон: белый) -->
+                <div class="module module--white">                    
+                    <div class="module__visual">
+                        <!-- <img src="assets/img/md_img4.jpg" alt="Интерфейс генерации моделей сегментации" class="module__img"> -->
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                    <div class="module__content">
+                        <h3 class="module__title">Модуль автоматической генерации моделей сегментации изображений</h3>
+                        <p class="module__text">
+                            Позволяет быстро обучать высокоточные модели для выделения объектов
+                            на уровне пикселей. Автоматизация сложных этапов — поиска архитектуры и настройки
+                            параметров — ускоряет итерации и снижает требования к экспертным знаниям. Модели
+                            подходят для медицины, автономных систем и сельского хозяйства.</p>
+                    </div>
+                </div>
+
+                <!-- Модуль 5 (фон: светло-серый) -->
+                <div class="module module--gray">
+                    <div class="module__content">
+                        <h3 class="module__title">Модуль автоматической генерации моделей видеомониторинга</h3>
+                        <p class="module__text">
+                            Автоматизирует обучение моделей сегментации и отслеживания
+                            объектов в видео. Это значительно уменьшает трудозатраты и ускоряет разработку
+                            решений для автономного вождения, медицинского анализа видеосъемки и интеллектуального
+                            наблюдения, включая использование дронов.</p>
+                    </div>
+                    <div class="module__visual">
+                        <img src="assets/img/md_img5.jpg" alt="Интерфейс генерации моделей видеонаблюдения" class="module__img">
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                </div>
+
+                <!-- Модуль 6 (фон: белый) -->
+                <div class="module module--white">
+                    <div class="module__visual">
+                        <img src="https://picsum.photos/id/6/600/400" alt="Интерфейс программной оболочки" class="module__img">
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                     <div class="module__content">
+                        <h3 class="module__title">Модуль автоматической генерации программных оболочек</h3>
+                        <p class="module__text">
+                            AutoGenNet создает не только модели, но и программные обертки
+                            для их запуска: Python-скрипты, а также SOAP- и REST-API. Это позволяет интегрировать
+                            модели в внешние системы и IoT-устройства без участия ML-специалистов — быстро и с
+                            минимальными затратами.</p>
+                    </div>
+                </div>
+
+                <!-- Модуль 7 (фон: светло-серый) -->
+                <div class="module module--gray">
+                    <div class="module__content">
+                        <h3 class="module__title">Легкий мобильный клиент</h3>
+                        <p class="module__text">
+                            Позволяет собирать данные на месте (фотографии, видео),
+                            отправлять их на обработку в облако и получать мгновенные результаты.
+                            Ускоряет итерации моделирования — идеально для инспекторов, агрономов
+                            и медицинского персонала.</p>
+                    </div>
+                    <div class="module__visual " style="width: 60%;">
+                        <!-- <img src="assets/img/md_img7.png" alt="Интерфейс мобильного клиента" class="module__img" > -->
+                        <div class="module__label">INTERFACE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Дорожная карта -->
+        <section class="roadmap" id="roadmap">
+            <div class="container">
+                <h2 class="section-title roadmap__title">Будущие обновления</h2>
+                <div class="roadmap__list">
+                    <div class="roadmap__item">
+                        <div class="roadmap__item-number">01</div>
+                        <div class="roadmap__item-content">
+                            <h3 class="roadmap__item-title">Расширение архитектур</h3>
+                            <p class="roadmap__item-text">Увеличение набора поддерживаемых архитектур глубокого обучения для улучшения качества генерации моделей.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap__item">
+                        <div class="roadmap__item-number">02</div>
+                        <div class="roadmap__item-content">
+                            <h3 class="roadmap__item-title">Более эффективный алгоритм</h3>
+                            <p class="roadmap__item-text">Разработка оптимизированного алгоритма автоматической генерации моделей — ускорение и повышение точности.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <a href="#" class="footer__logo">AutoGenNet</a>
+            <p class="footer__copyright">© 2025 AutoGenNet. Все права защищены.</p>
+            <div class="footer__links">
+                <a href="#" class="footer__link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+                <a href="#" class="footer__link" aria-label="Условия использования">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="js/script.js"></script> -->
+     <script src="js/smooth-scroll.js"></script>
+     <script src="js/language-selector.js"></script>
+     <script src="js/mobile-menu.js"></script>
+     <script src="js/header-scroll.js"></script>
+     <script src="js/scrollAppearAnim.js"></script>
+     <script src="js/bcgDotAnim.js"></script>
+     <script src="js/accordeonAnim.js"></script>
+     <script src="js/neuroAnim.js"></script>
+</body>
+</html>
