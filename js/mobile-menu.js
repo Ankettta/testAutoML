@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
     burgerButton?.addEventListener('click', () => {
         mobileNav.classList.toggle('active');
+        burgerButton.classList.toggle('active'); 
         
 
         document.querySelectorAll('.language-selector').forEach(selector => {
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!isClickInsideNav && !isClickOnBurger && mobileNav?.classList.contains('active')) {
             mobileNav.classList.remove('active');
+            burgerButton.classList.remove('active');
         }
     });
 });
